@@ -1,0 +1,46 @@
+<form #form1="ngForm">
+    <h2>Gestion des produits</h2>
+    <div class="form-group">
+        <label >Titre</label>
+        <input type="text" #title="ngModel" [(ngModel)]="titre" class="form-control" name="titre" required>
+        <div *ngIf="title.invalid && (title.touched || title.dirty)" class="alert alert-danger">
+            <div *ngIf="title.errors?.['required']">Titre est obligatoire.</div>
+            </div>
+    </div>
+    <div class="form-group">
+        <label>prix</label>
+        <input type="number" #pr="ngModel" [(ngModel)]="prix" class="form-control" min="0.01" name="prix" required>
+        <div *ngIf="pr.invalid && (pr.touched || pr.dirty)" class="alert alert-danger">
+            <div *ngIf="pr.errors?.['required']">Prix est obligatoire.</div>
+            <div *ngIf="pr.errors?.['min']">Prix doit être supérieur à 0.01</div>
+
+            </div>
+    </div>
+    <div class="form-group">
+        <label>description</label>
+        <textarea class="form-control" maxlength="500" name="description" [(ngModel)]="description" #des="ngModel" ></textarea>
+        <div *ngIf="des.invalid && (des.touched || des.dirty)" class="alert alert-danger">
+            <div *ngIf="des.errors?.['maxlength']">Description doit contenir moins de 500 caractères.</div>
+            </div>
+            
+    </div>
+    <div class="form-group">
+        <label>quantite</label>
+        <input type="number" name="quantite" min="0" required class="form-control" [(ngModel)]="quantite" #qua="ngModel">
+        <div *ngIf="qua.invalid && (qua.touched || qua.dirty)" class="alert alert-danger">
+            <div *ngIf="qua.errors?.['required']">Quantité est obligatoire.</div>
+            <div *ngIf="qua.errors?.['min']">Quantité doit être supérieur à 0.</div>
+            </div>
+            
+    </div>
+    <div class="form-group">
+        <label>catégorie</label>
+       <select name="categorie" class="form-control">
+
+              <option value="1">categorie 1</option>
+              <option value="2">categorie 2</option>
+              <option value="3">categorie 3</option>
+       </select> 
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
